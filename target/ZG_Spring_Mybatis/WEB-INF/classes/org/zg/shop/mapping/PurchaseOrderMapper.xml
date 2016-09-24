@@ -1,0 +1,681 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.zg.shop.dao.PurchaseOrderMapper" >
+  <resultMap id="BaseResultMap" type="org.zg.shop.model.PurchaseOrder" >
+    <result column="PKID" property="pkid" jdbcType="DECIMAL" />
+    <result column="PURCHASE_ORDER_CODE" property="purchaseOrderCode" jdbcType="VARCHAR" />
+    <result column="INVESTOR_ID" property="investorId" jdbcType="DECIMAL" />
+    <result column="INVESTOR_TYPE" property="investorType" jdbcType="DECIMAL" />
+    <result column="PURCHASE_TOTAL_AMOUNT" property="purchaseTotalAmount" jdbcType="DECIMAL" />
+    <result column="PURCHASE_TOTAL_WEIGHT" property="purchaseTotalWeight" jdbcType="DECIMAL" />
+    <result column="DELIVERY_STATUS" property="deliveryStatus" jdbcType="DECIMAL" />
+    <result column="BUYER_ID" property="buyerId" jdbcType="DECIMAL" />
+    <result column="DEPARTMENT_ID" property="departmentId" jdbcType="DECIMAL" />
+    <result column="BRANCH_COMPANY_ID" property="branchCompanyId" jdbcType="DECIMAL" />
+    <result column="AREA_ID" property="areaId" jdbcType="DECIMAL" />
+    <result column="ORDER_DATE" property="orderDate" jdbcType="TIMESTAMP" />
+    <result column="ADDED_BY" property="addedBy" jdbcType="DECIMAL" />
+    <result column="ADDED_TIME" property="addedTime" jdbcType="TIMESTAMP" />
+    <result column="LAST_MODIFIED_BY" property="lastModifiedBy" jdbcType="DECIMAL" />
+    <result column="LAST_MODIFIED_TIME" property="lastModifiedTime" jdbcType="TIMESTAMP" />
+    <result column="LAST_MODIFIED_IP" property="lastModifiedIp" jdbcType="VARCHAR" />
+    <result column="VALID" property="valid" jdbcType="VARCHAR" />
+    <result column="PLAN_IN_DATE" property="planInDate" jdbcType="TIMESTAMP" />
+    <result column="ORG_TITLE_ID" property="orgTitleId" jdbcType="DECIMAL" />
+    <result column="CONTRACT_CODE" property="contractCode" jdbcType="VARCHAR" />
+    <result column="CONTRACT_ID" property="contractId" jdbcType="DECIMAL" />
+    <result column="RECIPIENT" property="recipient" jdbcType="DECIMAL" />
+    <result column="CATEGORY_ID" property="categoryId" jdbcType="DECIMAL" />
+    <result column="PURCHASE_AREA_ID" property="purchaseAreaId" jdbcType="DECIMAL" />
+    <result column="GOOD_TYPE" property="goodType" jdbcType="DECIMAL" />
+    <result column="FINANCE_COMPANY_ID" property="financeCompanyId" jdbcType="DECIMAL" />
+    <result column="FINANCE_COMPANY_ABBREVIATION" property="financeCompanyAbbreviation" jdbcType="VARCHAR" />
+    <result column="BUSINESS_TYPE" property="businessType" jdbcType="DECIMAL" />
+    <result column="PAYMENT_STATUS" property="paymentStatus" jdbcType="DECIMAL" />
+    <result column="INVESTOR_NAME" property="investorName" jdbcType="VARCHAR" />
+    <result column="ADDED_NAME" property="addedName" jdbcType="VARCHAR" />
+    <result column="SUPPLIER_ID_LIST" property="supplierIdList" jdbcType="VARCHAR" />
+    <result column="SUPPLIER_NAME_LIST" property="supplierNameList" jdbcType="VARCHAR" />
+    <result column="FACTORY_ID_LIST" property="factoryIdList" jdbcType="VARCHAR" />
+    <result column="FACTORY_NAME_LIST" property="factoryNameList" jdbcType="VARCHAR" />
+    <result column="PRODUCT_LINE_NAME" property="productLineName" jdbcType="VARCHAR" />
+    <result column="POSITION_ID_LIST" property="positionIdList" jdbcType="VARCHAR" />
+    <result column="POSITION_NAME_LIST" property="positionNameList" jdbcType="VARCHAR" />
+    <result column="DEPARTMENT_NAME" property="departmentName" jdbcType="VARCHAR" />
+    <result column="DELIVERY_OWNER_TYPE" property="deliveryOwnerType" jdbcType="DECIMAL" />
+    <result column="DELIVERY_OWNER_NAME" property="deliveryOwnerName" jdbcType="VARCHAR" />
+    <result column="DELIVERY_OWNER_ID" property="deliveryOwnerId" jdbcType="DECIMAL" />
+    <result column="FINANCE_APPLY_CODE" property="financeApplyCode" jdbcType="VARCHAR" />
+    <result column="PURCHASE_CHANNEL_TYPE" property="purchaseChannelType" jdbcType="DECIMAL" />
+    <result column="PAYMENT_AMOUNT" property="paymentAmount" jdbcType="DECIMAL" />
+    <result column="PURCHASE_TOTAL_QUANTITY" property="purchaseTotalQuantity" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    PKID, PURCHASE_ORDER_CODE, INVESTOR_ID, INVESTOR_TYPE, PURCHASE_TOTAL_AMOUNT, PURCHASE_TOTAL_WEIGHT,
+    DELIVERY_STATUS, BUYER_ID, DEPARTMENT_ID, BRANCH_COMPANY_ID, AREA_ID, ORDER_DATE,
+    ADDED_BY, ADDED_TIME, LAST_MODIFIED_BY, LAST_MODIFIED_TIME, LAST_MODIFIED_IP, VALID,
+    PLAN_IN_DATE, ORG_TITLE_ID, CONTRACT_CODE, CONTRACT_ID, RECIPIENT, CATEGORY_ID, PURCHASE_AREA_ID,
+    GOOD_TYPE, FINANCE_COMPANY_ID, FINANCE_COMPANY_ABBREVIATION, BUSINESS_TYPE, PAYMENT_STATUS,
+    INVESTOR_NAME, ADDED_NAME, SUPPLIER_ID_LIST, SUPPLIER_NAME_LIST, FACTORY_ID_LIST,
+    FACTORY_NAME_LIST, PRODUCT_LINE_NAME, POSITION_ID_LIST, POSITION_NAME_LIST, DEPARTMENT_NAME,
+    DELIVERY_OWNER_TYPE, DELIVERY_OWNER_NAME, DELIVERY_OWNER_ID, FINANCE_APPLY_CODE,
+    PURCHASE_CHANNEL_TYPE, PAYMENT_AMOUNT, PURCHASE_TOTAL_QUANTITY
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="org.zg.shop.model.PurchaseOrderExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from tpurchase_order
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="org.zg.shop.model.PurchaseOrderExample" >
+    delete from tpurchase_order
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="org.zg.shop.model.PurchaseOrder" >
+    insert into tpurchase_order (PKID, PURCHASE_ORDER_CODE, INVESTOR_ID,
+      INVESTOR_TYPE, PURCHASE_TOTAL_AMOUNT, PURCHASE_TOTAL_WEIGHT,
+      DELIVERY_STATUS, BUYER_ID, DEPARTMENT_ID,
+      BRANCH_COMPANY_ID, AREA_ID, ORDER_DATE,
+      ADDED_BY, ADDED_TIME, LAST_MODIFIED_BY,
+      LAST_MODIFIED_TIME, LAST_MODIFIED_IP, VALID,
+      PLAN_IN_DATE, ORG_TITLE_ID, CONTRACT_CODE,
+      CONTRACT_ID, RECIPIENT, CATEGORY_ID,
+      PURCHASE_AREA_ID, GOOD_TYPE, FINANCE_COMPANY_ID,
+      FINANCE_COMPANY_ABBREVIATION, BUSINESS_TYPE,
+      PAYMENT_STATUS, INVESTOR_NAME, ADDED_NAME,
+      SUPPLIER_ID_LIST, SUPPLIER_NAME_LIST, FACTORY_ID_LIST,
+      FACTORY_NAME_LIST, PRODUCT_LINE_NAME, POSITION_ID_LIST,
+      POSITION_NAME_LIST, DEPARTMENT_NAME, DELIVERY_OWNER_TYPE,
+      DELIVERY_OWNER_NAME, DELIVERY_OWNER_ID, FINANCE_APPLY_CODE,
+      PURCHASE_CHANNEL_TYPE, PAYMENT_AMOUNT, PURCHASE_TOTAL_QUANTITY
+      )
+    values (#{pkid,jdbcType=DECIMAL}, #{purchaseOrderCode,jdbcType=VARCHAR}, #{investorId,jdbcType=DECIMAL},
+      #{investorType,jdbcType=DECIMAL}, #{purchaseTotalAmount,jdbcType=DECIMAL}, #{purchaseTotalWeight,jdbcType=DECIMAL},
+      #{deliveryStatus,jdbcType=DECIMAL}, #{buyerId,jdbcType=DECIMAL}, #{departmentId,jdbcType=DECIMAL},
+      #{branchCompanyId,jdbcType=DECIMAL}, #{areaId,jdbcType=DECIMAL}, #{orderDate,jdbcType=TIMESTAMP},
+      #{addedBy,jdbcType=DECIMAL}, #{addedTime,jdbcType=TIMESTAMP}, #{lastModifiedBy,jdbcType=DECIMAL},
+      #{lastModifiedTime,jdbcType=TIMESTAMP}, #{lastModifiedIp,jdbcType=VARCHAR}, #{valid,jdbcType=VARCHAR},
+      #{planInDate,jdbcType=TIMESTAMP}, #{orgTitleId,jdbcType=DECIMAL}, #{contractCode,jdbcType=VARCHAR},
+      #{contractId,jdbcType=DECIMAL}, #{recipient,jdbcType=DECIMAL}, #{categoryId,jdbcType=DECIMAL},
+      #{purchaseAreaId,jdbcType=DECIMAL}, #{goodType,jdbcType=DECIMAL}, #{financeCompanyId,jdbcType=DECIMAL},
+      #{financeCompanyAbbreviation,jdbcType=VARCHAR}, #{businessType,jdbcType=DECIMAL},
+      #{paymentStatus,jdbcType=DECIMAL}, #{investorName,jdbcType=VARCHAR}, #{addedName,jdbcType=VARCHAR},
+      #{supplierIdList,jdbcType=VARCHAR}, #{supplierNameList,jdbcType=VARCHAR}, #{factoryIdList,jdbcType=VARCHAR},
+      #{factoryNameList,jdbcType=VARCHAR}, #{productLineName,jdbcType=VARCHAR}, #{positionIdList,jdbcType=VARCHAR},
+      #{positionNameList,jdbcType=VARCHAR}, #{departmentName,jdbcType=VARCHAR}, #{deliveryOwnerType,jdbcType=DECIMAL},
+      #{deliveryOwnerName,jdbcType=VARCHAR}, #{deliveryOwnerId,jdbcType=DECIMAL}, #{financeApplyCode,jdbcType=VARCHAR},
+      #{purchaseChannelType,jdbcType=DECIMAL}, #{paymentAmount,jdbcType=DECIMAL}, #{purchaseTotalQuantity,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="org.zg.shop.model.PurchaseOrder" >
+    insert into tpurchase_order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="pkid != null" >
+        PKID,
+      </if>
+      <if test="purchaseOrderCode != null" >
+        PURCHASE_ORDER_CODE,
+      </if>
+      <if test="investorId != null" >
+        INVESTOR_ID,
+      </if>
+      <if test="investorType != null" >
+        INVESTOR_TYPE,
+      </if>
+      <if test="purchaseTotalAmount != null" >
+        PURCHASE_TOTAL_AMOUNT,
+      </if>
+      <if test="purchaseTotalWeight != null" >
+        PURCHASE_TOTAL_WEIGHT,
+      </if>
+      <if test="deliveryStatus != null" >
+        DELIVERY_STATUS,
+      </if>
+      <if test="buyerId != null" >
+        BUYER_ID,
+      </if>
+      <if test="departmentId != null" >
+        DEPARTMENT_ID,
+      </if>
+      <if test="branchCompanyId != null" >
+        BRANCH_COMPANY_ID,
+      </if>
+      <if test="areaId != null" >
+        AREA_ID,
+      </if>
+      <if test="orderDate != null" >
+        ORDER_DATE,
+      </if>
+      <if test="addedBy != null" >
+        ADDED_BY,
+      </if>
+      <if test="addedTime != null" >
+        ADDED_TIME,
+      </if>
+      <if test="lastModifiedBy != null" >
+        LAST_MODIFIED_BY,
+      </if>
+      <if test="lastModifiedTime != null" >
+        LAST_MODIFIED_TIME,
+      </if>
+      <if test="lastModifiedIp != null" >
+        LAST_MODIFIED_IP,
+      </if>
+      <if test="valid != null" >
+        VALID,
+      </if>
+      <if test="planInDate != null" >
+        PLAN_IN_DATE,
+      </if>
+      <if test="orgTitleId != null" >
+        ORG_TITLE_ID,
+      </if>
+      <if test="contractCode != null" >
+        CONTRACT_CODE,
+      </if>
+      <if test="contractId != null" >
+        CONTRACT_ID,
+      </if>
+      <if test="recipient != null" >
+        RECIPIENT,
+      </if>
+      <if test="categoryId != null" >
+        CATEGORY_ID,
+      </if>
+      <if test="purchaseAreaId != null" >
+        PURCHASE_AREA_ID,
+      </if>
+      <if test="goodType != null" >
+        GOOD_TYPE,
+      </if>
+      <if test="financeCompanyId != null" >
+        FINANCE_COMPANY_ID,
+      </if>
+      <if test="financeCompanyAbbreviation != null" >
+        FINANCE_COMPANY_ABBREVIATION,
+      </if>
+      <if test="businessType != null" >
+        BUSINESS_TYPE,
+      </if>
+      <if test="paymentStatus != null" >
+        PAYMENT_STATUS,
+      </if>
+      <if test="investorName != null" >
+        INVESTOR_NAME,
+      </if>
+      <if test="addedName != null" >
+        ADDED_NAME,
+      </if>
+      <if test="supplierIdList != null" >
+        SUPPLIER_ID_LIST,
+      </if>
+      <if test="supplierNameList != null" >
+        SUPPLIER_NAME_LIST,
+      </if>
+      <if test="factoryIdList != null" >
+        FACTORY_ID_LIST,
+      </if>
+      <if test="factoryNameList != null" >
+        FACTORY_NAME_LIST,
+      </if>
+      <if test="productLineName != null" >
+        PRODUCT_LINE_NAME,
+      </if>
+      <if test="positionIdList != null" >
+        POSITION_ID_LIST,
+      </if>
+      <if test="positionNameList != null" >
+        POSITION_NAME_LIST,
+      </if>
+      <if test="departmentName != null" >
+        DEPARTMENT_NAME,
+      </if>
+      <if test="deliveryOwnerType != null" >
+        DELIVERY_OWNER_TYPE,
+      </if>
+      <if test="deliveryOwnerName != null" >
+        DELIVERY_OWNER_NAME,
+      </if>
+      <if test="deliveryOwnerId != null" >
+        DELIVERY_OWNER_ID,
+      </if>
+      <if test="financeApplyCode != null" >
+        FINANCE_APPLY_CODE,
+      </if>
+      <if test="purchaseChannelType != null" >
+        PURCHASE_CHANNEL_TYPE,
+      </if>
+      <if test="paymentAmount != null" >
+        PAYMENT_AMOUNT,
+      </if>
+      <if test="purchaseTotalQuantity != null" >
+        PURCHASE_TOTAL_QUANTITY,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="pkid != null" >
+        #{pkid,jdbcType=DECIMAL},
+      </if>
+      <if test="purchaseOrderCode != null" >
+        #{purchaseOrderCode,jdbcType=VARCHAR},
+      </if>
+      <if test="investorId != null" >
+        #{investorId,jdbcType=DECIMAL},
+      </if>
+      <if test="investorType != null" >
+        #{investorType,jdbcType=DECIMAL},
+      </if>
+      <if test="purchaseTotalAmount != null" >
+        #{purchaseTotalAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="purchaseTotalWeight != null" >
+        #{purchaseTotalWeight,jdbcType=DECIMAL},
+      </if>
+      <if test="deliveryStatus != null" >
+        #{deliveryStatus,jdbcType=DECIMAL},
+      </if>
+      <if test="buyerId != null" >
+        #{buyerId,jdbcType=DECIMAL},
+      </if>
+      <if test="departmentId != null" >
+        #{departmentId,jdbcType=DECIMAL},
+      </if>
+      <if test="branchCompanyId != null" >
+        #{branchCompanyId,jdbcType=DECIMAL},
+      </if>
+      <if test="areaId != null" >
+        #{areaId,jdbcType=DECIMAL},
+      </if>
+      <if test="orderDate != null" >
+        #{orderDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addedBy != null" >
+        #{addedBy,jdbcType=DECIMAL},
+      </if>
+      <if test="addedTime != null" >
+        #{addedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastModifiedBy != null" >
+        #{lastModifiedBy,jdbcType=DECIMAL},
+      </if>
+      <if test="lastModifiedTime != null" >
+        #{lastModifiedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastModifiedIp != null" >
+        #{lastModifiedIp,jdbcType=VARCHAR},
+      </if>
+      <if test="valid != null" >
+        #{valid,jdbcType=VARCHAR},
+      </if>
+      <if test="planInDate != null" >
+        #{planInDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orgTitleId != null" >
+        #{orgTitleId,jdbcType=DECIMAL},
+      </if>
+      <if test="contractCode != null" >
+        #{contractCode,jdbcType=VARCHAR},
+      </if>
+      <if test="contractId != null" >
+        #{contractId,jdbcType=DECIMAL},
+      </if>
+      <if test="recipient != null" >
+        #{recipient,jdbcType=DECIMAL},
+      </if>
+      <if test="categoryId != null" >
+        #{categoryId,jdbcType=DECIMAL},
+      </if>
+      <if test="purchaseAreaId != null" >
+        #{purchaseAreaId,jdbcType=DECIMAL},
+      </if>
+      <if test="goodType != null" >
+        #{goodType,jdbcType=DECIMAL},
+      </if>
+      <if test="financeCompanyId != null" >
+        #{financeCompanyId,jdbcType=DECIMAL},
+      </if>
+      <if test="financeCompanyAbbreviation != null" >
+        #{financeCompanyAbbreviation,jdbcType=VARCHAR},
+      </if>
+      <if test="businessType != null" >
+        #{businessType,jdbcType=DECIMAL},
+      </if>
+      <if test="paymentStatus != null" >
+        #{paymentStatus,jdbcType=DECIMAL},
+      </if>
+      <if test="investorName != null" >
+        #{investorName,jdbcType=VARCHAR},
+      </if>
+      <if test="addedName != null" >
+        #{addedName,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierIdList != null" >
+        #{supplierIdList,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierNameList != null" >
+        #{supplierNameList,jdbcType=VARCHAR},
+      </if>
+      <if test="factoryIdList != null" >
+        #{factoryIdList,jdbcType=VARCHAR},
+      </if>
+      <if test="factoryNameList != null" >
+        #{factoryNameList,jdbcType=VARCHAR},
+      </if>
+      <if test="productLineName != null" >
+        #{productLineName,jdbcType=VARCHAR},
+      </if>
+      <if test="positionIdList != null" >
+        #{positionIdList,jdbcType=VARCHAR},
+      </if>
+      <if test="positionNameList != null" >
+        #{positionNameList,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentName != null" >
+        #{departmentName,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryOwnerType != null" >
+        #{deliveryOwnerType,jdbcType=DECIMAL},
+      </if>
+      <if test="deliveryOwnerName != null" >
+        #{deliveryOwnerName,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryOwnerId != null" >
+        #{deliveryOwnerId,jdbcType=DECIMAL},
+      </if>
+      <if test="financeApplyCode != null" >
+        #{financeApplyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="purchaseChannelType != null" >
+        #{purchaseChannelType,jdbcType=DECIMAL},
+      </if>
+      <if test="paymentAmount != null" >
+        #{paymentAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="purchaseTotalQuantity != null" >
+        #{purchaseTotalQuantity,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="org.zg.shop.model.PurchaseOrderExample" resultType="java.lang.Integer" >
+    select count(*) from tpurchase_order
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tpurchase_order
+    <set >
+      <if test="record.pkid != null" >
+        PKID = #{record.pkid,jdbcType=DECIMAL},
+      </if>
+      <if test="record.purchaseOrderCode != null" >
+        PURCHASE_ORDER_CODE = #{record.purchaseOrderCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.investorId != null" >
+        INVESTOR_ID = #{record.investorId,jdbcType=DECIMAL},
+      </if>
+      <if test="record.investorType != null" >
+        INVESTOR_TYPE = #{record.investorType,jdbcType=DECIMAL},
+      </if>
+      <if test="record.purchaseTotalAmount != null" >
+        PURCHASE_TOTAL_AMOUNT = #{record.purchaseTotalAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.purchaseTotalWeight != null" >
+        PURCHASE_TOTAL_WEIGHT = #{record.purchaseTotalWeight,jdbcType=DECIMAL},
+      </if>
+      <if test="record.deliveryStatus != null" >
+        DELIVERY_STATUS = #{record.deliveryStatus,jdbcType=DECIMAL},
+      </if>
+      <if test="record.buyerId != null" >
+        BUYER_ID = #{record.buyerId,jdbcType=DECIMAL},
+      </if>
+      <if test="record.departmentId != null" >
+        DEPARTMENT_ID = #{record.departmentId,jdbcType=DECIMAL},
+      </if>
+      <if test="record.branchCompanyId != null" >
+        BRANCH_COMPANY_ID = #{record.branchCompanyId,jdbcType=DECIMAL},
+      </if>
+      <if test="record.areaId != null" >
+        AREA_ID = #{record.areaId,jdbcType=DECIMAL},
+      </if>
+      <if test="record.orderDate != null" >
+        ORDER_DATE = #{record.orderDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.addedBy != null" >
+        ADDED_BY = #{record.addedBy,jdbcType=DECIMAL},
+      </if>
+      <if test="record.addedTime != null" >
+        ADDED_TIME = #{record.addedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.lastModifiedBy != null" >
+        LAST_MODIFIED_BY = #{record.lastModifiedBy,jdbcType=DECIMAL},
+      </if>
+      <if test="record.lastModifiedTime != null" >
+        LAST_MODIFIED_TIME = #{record.lastModifiedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.lastModifiedIp != null" >
+        LAST_MODIFIED_IP = #{record.lastModifiedIp,jdbcType=VARCHAR},
+      </if>
+      <if test="record.valid != null" >
+        VALID = #{record.valid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.planInDate != null" >
+        PLAN_IN_DATE = #{record.planInDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.orgTitleId != null" >
+        ORG_TITLE_ID = #{record.orgTitleId,jdbcType=DECIMAL},
+      </if>
+      <if test="record.contractCode != null" >
+        CONTRACT_CODE = #{record.contractCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contractId != null" >
+        CONTRACT_ID = #{record.contractId,jdbcType=DECIMAL},
+      </if>
+      <if test="record.recipient != null" >
+        RECIPIENT = #{record.recipient,jdbcType=DECIMAL},
+      </if>
+      <if test="record.categoryId != null" >
+        CATEGORY_ID = #{record.categoryId,jdbcType=DECIMAL},
+      </if>
+      <if test="record.purchaseAreaId != null" >
+        PURCHASE_AREA_ID = #{record.purchaseAreaId,jdbcType=DECIMAL},
+      </if>
+      <if test="record.goodType != null" >
+        GOOD_TYPE = #{record.goodType,jdbcType=DECIMAL},
+      </if>
+      <if test="record.financeCompanyId != null" >
+        FINANCE_COMPANY_ID = #{record.financeCompanyId,jdbcType=DECIMAL},
+      </if>
+      <if test="record.financeCompanyAbbreviation != null" >
+        FINANCE_COMPANY_ABBREVIATION = #{record.financeCompanyAbbreviation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.businessType != null" >
+        BUSINESS_TYPE = #{record.businessType,jdbcType=DECIMAL},
+      </if>
+      <if test="record.paymentStatus != null" >
+        PAYMENT_STATUS = #{record.paymentStatus,jdbcType=DECIMAL},
+      </if>
+      <if test="record.investorName != null" >
+        INVESTOR_NAME = #{record.investorName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.addedName != null" >
+        ADDED_NAME = #{record.addedName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.supplierIdList != null" >
+        SUPPLIER_ID_LIST = #{record.supplierIdList,jdbcType=VARCHAR},
+      </if>
+      <if test="record.supplierNameList != null" >
+        SUPPLIER_NAME_LIST = #{record.supplierNameList,jdbcType=VARCHAR},
+      </if>
+      <if test="record.factoryIdList != null" >
+        FACTORY_ID_LIST = #{record.factoryIdList,jdbcType=VARCHAR},
+      </if>
+      <if test="record.factoryNameList != null" >
+        FACTORY_NAME_LIST = #{record.factoryNameList,jdbcType=VARCHAR},
+      </if>
+      <if test="record.productLineName != null" >
+        PRODUCT_LINE_NAME = #{record.productLineName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.positionIdList != null" >
+        POSITION_ID_LIST = #{record.positionIdList,jdbcType=VARCHAR},
+      </if>
+      <if test="record.positionNameList != null" >
+        POSITION_NAME_LIST = #{record.positionNameList,jdbcType=VARCHAR},
+      </if>
+      <if test="record.departmentName != null" >
+        DEPARTMENT_NAME = #{record.departmentName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deliveryOwnerType != null" >
+        DELIVERY_OWNER_TYPE = #{record.deliveryOwnerType,jdbcType=DECIMAL},
+      </if>
+      <if test="record.deliveryOwnerName != null" >
+        DELIVERY_OWNER_NAME = #{record.deliveryOwnerName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deliveryOwnerId != null" >
+        DELIVERY_OWNER_ID = #{record.deliveryOwnerId,jdbcType=DECIMAL},
+      </if>
+      <if test="record.financeApplyCode != null" >
+        FINANCE_APPLY_CODE = #{record.financeApplyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.purchaseChannelType != null" >
+        PURCHASE_CHANNEL_TYPE = #{record.purchaseChannelType,jdbcType=DECIMAL},
+      </if>
+      <if test="record.paymentAmount != null" >
+        PAYMENT_AMOUNT = #{record.paymentAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.purchaseTotalQuantity != null" >
+        PURCHASE_TOTAL_QUANTITY = #{record.purchaseTotalQuantity,jdbcType=DECIMAL},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tpurchase_order
+    set PKID = #{record.pkid,jdbcType=DECIMAL},
+      PURCHASE_ORDER_CODE = #{record.purchaseOrderCode,jdbcType=VARCHAR},
+      INVESTOR_ID = #{record.investorId,jdbcType=DECIMAL},
+      INVESTOR_TYPE = #{record.investorType,jdbcType=DECIMAL},
+      PURCHASE_TOTAL_AMOUNT = #{record.purchaseTotalAmount,jdbcType=DECIMAL},
+      PURCHASE_TOTAL_WEIGHT = #{record.purchaseTotalWeight,jdbcType=DECIMAL},
+      DELIVERY_STATUS = #{record.deliveryStatus,jdbcType=DECIMAL},
+      BUYER_ID = #{record.buyerId,jdbcType=DECIMAL},
+      DEPARTMENT_ID = #{record.departmentId,jdbcType=DECIMAL},
+      BRANCH_COMPANY_ID = #{record.branchCompanyId,jdbcType=DECIMAL},
+      AREA_ID = #{record.areaId,jdbcType=DECIMAL},
+      ORDER_DATE = #{record.orderDate,jdbcType=TIMESTAMP},
+      ADDED_BY = #{record.addedBy,jdbcType=DECIMAL},
+      ADDED_TIME = #{record.addedTime,jdbcType=TIMESTAMP},
+      LAST_MODIFIED_BY = #{record.lastModifiedBy,jdbcType=DECIMAL},
+      LAST_MODIFIED_TIME = #{record.lastModifiedTime,jdbcType=TIMESTAMP},
+      LAST_MODIFIED_IP = #{record.lastModifiedIp,jdbcType=VARCHAR},
+      VALID = #{record.valid,jdbcType=VARCHAR},
+      PLAN_IN_DATE = #{record.planInDate,jdbcType=TIMESTAMP},
+      ORG_TITLE_ID = #{record.orgTitleId,jdbcType=DECIMAL},
+      CONTRACT_CODE = #{record.contractCode,jdbcType=VARCHAR},
+      CONTRACT_ID = #{record.contractId,jdbcType=DECIMAL},
+      RECIPIENT = #{record.recipient,jdbcType=DECIMAL},
+      CATEGORY_ID = #{record.categoryId,jdbcType=DECIMAL},
+      PURCHASE_AREA_ID = #{record.purchaseAreaId,jdbcType=DECIMAL},
+      GOOD_TYPE = #{record.goodType,jdbcType=DECIMAL},
+      FINANCE_COMPANY_ID = #{record.financeCompanyId,jdbcType=DECIMAL},
+      FINANCE_COMPANY_ABBREVIATION = #{record.financeCompanyAbbreviation,jdbcType=VARCHAR},
+      BUSINESS_TYPE = #{record.businessType,jdbcType=DECIMAL},
+      PAYMENT_STATUS = #{record.paymentStatus,jdbcType=DECIMAL},
+      INVESTOR_NAME = #{record.investorName,jdbcType=VARCHAR},
+      ADDED_NAME = #{record.addedName,jdbcType=VARCHAR},
+      SUPPLIER_ID_LIST = #{record.supplierIdList,jdbcType=VARCHAR},
+      SUPPLIER_NAME_LIST = #{record.supplierNameList,jdbcType=VARCHAR},
+      FACTORY_ID_LIST = #{record.factoryIdList,jdbcType=VARCHAR},
+      FACTORY_NAME_LIST = #{record.factoryNameList,jdbcType=VARCHAR},
+      PRODUCT_LINE_NAME = #{record.productLineName,jdbcType=VARCHAR},
+      POSITION_ID_LIST = #{record.positionIdList,jdbcType=VARCHAR},
+      POSITION_NAME_LIST = #{record.positionNameList,jdbcType=VARCHAR},
+      DEPARTMENT_NAME = #{record.departmentName,jdbcType=VARCHAR},
+      DELIVERY_OWNER_TYPE = #{record.deliveryOwnerType,jdbcType=DECIMAL},
+      DELIVERY_OWNER_NAME = #{record.deliveryOwnerName,jdbcType=VARCHAR},
+      DELIVERY_OWNER_ID = #{record.deliveryOwnerId,jdbcType=DECIMAL},
+      FINANCE_APPLY_CODE = #{record.financeApplyCode,jdbcType=VARCHAR},
+      PURCHASE_CHANNEL_TYPE = #{record.purchaseChannelType,jdbcType=DECIMAL},
+      PAYMENT_AMOUNT = #{record.paymentAmount,jdbcType=DECIMAL},
+      PURCHASE_TOTAL_QUANTITY = #{record.purchaseTotalQuantity,jdbcType=DECIMAL}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <select id="GetPurchaseOrderAll" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    from tpurchase_order  ORDER  by pkid DESC LIMIT 10,50
+  </select>
+</mapper>
